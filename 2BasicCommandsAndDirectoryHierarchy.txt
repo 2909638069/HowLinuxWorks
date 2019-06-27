@@ -1,0 +1,47 @@
+This chapter is a guide to the Unix commands and utilities.
+Why Unix commands? Linux is a Unix flavor at heart.
+
+2.1 The Bourne Shell: /bin/sh
+A shell is a program that runs commands, and it also serves as a small programming environment.
+Shell scripts are text files that contain a sequence of shell commands.
+The bash shell is the default shell on most Linux distributions.
+
+2.2.1 The Shell Window
+A single $ denotes the shell prompt. A single # denotes that you should run as the superuser (root).
+
+2.2.2 cat
+  $ cat file1 file2 ...
+cat (concatenate) prints the contents of file1, file2, and any other files, and then exits.
+
+2.2.3 Standard Input and Standard output (I/O)
+Unix processes use I/O streams to read and write data. Streams are very flexible.
+One of the best features of stadard streams is that they can easily be manipulated to read and
+write to places other than the terminal.
+
+2.3 Basic Commands
+
+2.3.1 ls
+The ls command lists the contents of a directory. The default is the current directory.
+Use ls -l for a detailed (long) listing.
+
+2.3.2 cp
+The cp command copies files.
+  $ cp file1 file2
+  $ cp file1 file2 ... fileN dir
+
+2.3.3 mv
+The mv commands move files.
+  $ mv file1 file2
+  $ mv file1 file2 ... fileN dir
+
+2.3.4 touch
+The touch command creates a file. If the file already exists, touch updates the file's
+modification time stamp.
+
+2.3.5 rm
+To remove a file, use rm.
+
+2.3.6 echo
+The echo command prints its arguments to the standard output.
+
+2.4 Navigating Directories

@@ -1,0 +1,70 @@
+Understanding how an operating system works through abstraction.
+
+1.1 Levels and Layers of Abstraction in a Linux System
+A Linux system has three main levels.
+The hardware is at the base. Hardware includes memory, CPUs and so on.
+The next level up is the kernel, which is the core of the os.
+The kernel is an interface between the hardware and user processes.
+The next level up is the user processes.
+
+1.2 Hardware: Understanding Main Memory
+Main memory is perhaps the most important of all of the hareware.
+This is where the running kernel and processes reside.
+A CPU is just an operator on memory.
+
+1.3 The Kernel
+The kernel is in charge of managing tasks as follows:
+a. Processes. The kernel determines which processes are allowed to use CPU.
+b. Memory. The kernel keep track of all memory.
+c. Device drivers. The kernel acts as an interface between hardware and processes.
+d. System calls and support. Processes normally use system calls to communicate with the kernel.
+We'll briefly explore each of these areas.
+
+1.3.1 Process Management
+The kernel manages the starting, pausing, resuming, and terminating of processes.
+Consider a system with a one-core CPU. Only one process may actually use the CPU at any given time.
+The act of one process giving up control of CPU to another process is called a context switch.
+The kernel is responsible for context switch.
+Think about a situation when a process is running in user mode but its time slice is up, what happens:
+1. The CPU interrupts the current process based on an internal timer, switches into kernel mode,
+   and hands control back to the kernel.
+2. The kernel records the current state of the CPU and memory, which will be essential to resuming
+   the process that was just interrupted.
+3. The kernel performs any tasks that might have come up during the preceding time slice.
+4. The kernel is now ready to let another process run. The kernel analyzes the list of processes
+   that are ready to run and choose one.
+5. The kernel prepares the memory for the new process, and then prepares the CPU.
+6. The kernel tells the CPU how long the time slice for the new process will last.
+7. The kernel swithes the CPU into user mode and hands control of the CPU to the process.
+
+1.3.2 Memory Management
+The kernel has a complex job of memory management because the following conditions must hold:
+a. The kernel must have its own private area that user processes can't access.
+b. Each user process needs its own section of memory.
+c. One user process may not access the private memory of another process.
+d. User process can share memory.
+e. Some memory in user processes can be read-only.
+f. The system can use more memory than is physically present by using disk space as auxiliary.
+Modern CPUs include a memory management unit (MMU) that enables a memory access scheme called
+virtual memory. When the process accesses some of its memory, the MMU intercepts the access and
+uses a memory address map to translate the memory location from the process into an actual
+physical memory location on the machine. The kernel must still initialize and continuously maintain
+and alter this memory address map.
+
+1.3.3 Device Driver and Management
+A device is typically accessible only in kernel mode because imporper access could crash the machine.
+Another problem is that different devices rarely have the same programming interface. Therefore,
+device drivers have traditionally been part of the kernel, and they strive to present a uniform
+interface to user processes in order to simplify the software developer's job.
+
+1.3.4 System Calls and Support
+System calls are available to user processes. 
+Two system calls, fork() and exec(), are important for understanding how processes start up.
+a. When a process calls fork(), the kernel creates a nearly identical copy of the process.
+b. When a process calls exec(program), the kernel starts program, replacing the current process.
+Other than init, all user processes on a Linux system start as a result of fork(), and most of
+the time, you also run exec() to start a new program.
+
+1.4 User Space
+The main memory that the kernel allocates for user processes is called user space.
+
