@@ -45,3 +45,50 @@ To remove a file, use rm.
 The echo command prints its arguments to the standard output.
 
 2.4 Navigating Directories
+Unix has a directory hierarchy that starts at /, called the root directory.
+The directory separator is the slash (/).
+When you refer to a file or directory, you specify a path or pathname.
+When a path starts with /, it is a full or absolute path.
+Two dots (..) refers to the parent of a directory. One dot (.) refers to the current directory.
+A path not beginning with / is called a relative path.
+
+2.4.1 cd
+  $ cd dir
+cd is short for change directory.
+
+2.4.2 mkdir
+
+2.4.3 rmdir
+
+2.4.4 Shell Globbing (Wildcards)
+The shell can match simple patterns to file and directory names, a process known as globbing.
+The simplest of these is the glob character *,
+  a. * which tells the shell to match any number of arbitrary characters.
+  b. at* expands to all filenames that start with at.
+  c. *at expands to all filenames that end with at.
+  d. *at* expands to all filenames that contain at.
+
+Another shell glob charactoer, the question mark (?), instructs the shell to match exactly one
+arbitrary character. For example, b?at matches boat and brat.
+
+If you don't want the shell to expand a glob in a command, enclose the glob in single quotes('').
+
+2.5 Intermediate Commands
+The following sections describe the most essential intermediate Unix commands.
+
+2.5.1 grep
+The grep command prints the lines from a file or input stream that match an expression.
+For example, to print the lines in the /etc/passwd file that contains the text root, enter this:
+  $ grep root /etc/passwd
+
+The grep command is extraordinarily handy when operating on multiple files at once because it prints the
+filename in addition to the matching line.
+
+Two of the most important grep options are -i (for case-insensitive matches) and -v (which inverts the
+search, that is, prints all lines that don't match).
+
+grep understands patterns known as regular expressions. Regular expressions are more powerful than
+wildcard-style patterns, and they have a different syntax.
+
+2.5.2 less
+
